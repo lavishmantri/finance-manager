@@ -1,0 +1,19 @@
+.app {
+  height: 100%;
+  width: 100%;
+}
+
+.appHeader {
+  background-color: #282c34;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.appContent {
+  height: calc(100% - 48px);
+}

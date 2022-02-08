@@ -1,4 +1,5 @@
 import { Input } from '../input';
+import styles from './form-control.module.scss';
 
 interface FormControlProps {
   label: string;
@@ -9,8 +10,8 @@ interface FormControlProps {
 
 export const FormControl = ({ label, value, onChange }: FormControlProps) => {
   return (
-    <div>
-      <label></label>
+    <div className={styles.formControl}>
+      {label && <label>label</label>}
       <Input value={value} onChange={onChange} />
     </div>
   );
