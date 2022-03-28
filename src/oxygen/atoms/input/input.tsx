@@ -1,7 +1,5 @@
 import React from 'react';
-
-import { EnterKey, TabKey } from '../../utils/key-code';
-
+import { EnterKey, TabKey } from '../../../utils/key-code';
 import styles from './input.module.scss';
 
 interface InputProps {

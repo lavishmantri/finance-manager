@@ -1,5 +1,5 @@
+import { Modal } from '../../oxygen/molecules/modal';
 import { FormControl } from '../form-control';
-import { Modal } from '../modal';
 
 interface AddTransactionProps {
   onCancel?: () => void;

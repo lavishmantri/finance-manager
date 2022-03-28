@@ -1,4 +1,4 @@
-import { Input } from '../input';
+import { Input } from '../../oxygen/atoms/input';
 import styles from './form-control.module.scss';
 
 interface FormControlProps {

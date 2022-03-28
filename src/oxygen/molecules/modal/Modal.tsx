@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import ReactModal from 'react-modal';
-import { Button } from '../button';
+import { Button } from '../../atoms/button';
 import styles from './modal.module.scss';
 
 enum ModalVariant {

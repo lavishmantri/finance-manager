@@ -4,6 +4,9 @@ import styles from './typography.module.scss';
 export enum TypographyVariants {
   HEADING1 = 'HEADING1',
   HEADING2 = 'HEADING2',
+  SUB_HEADING1 = 'SUB_HEADING1',
+  SUB_HEADING2 = 'SUB_HEADING2',
+  LABEL = 'LABEL',
 }
 
 interface TypographyProps {

@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import { Button } from '../../oxygen/atoms/button';
+import { Typography, TypographyVariants } from '../../oxygen/molecules/typography';
 import { Transaction } from '../../types/transaction';
 import { AddTransaction } from '../add-transaction';
-import { Button } from '../button';
 import { DataTable } from '../data-table';
-import { Typography, TypographyVariants } from '../typography';
 import styles from './transactionlist.module.scss';
 
 const columns = [
