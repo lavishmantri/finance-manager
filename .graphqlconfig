@@ -1,0 +1,4 @@
+{
+  "schemaPath": "./src/services/generated/schema.graphql",
+  "documents": "./src/services/**/*.graphql"
+}

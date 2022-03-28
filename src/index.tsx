@@ -1,17 +1,21 @@
+import { ApolloProvider } from '@apollo/client';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { QueryClientProvider } from 'react-query';
 import App from './App';
 import './index.css';
+import { client } from './initializers/apollo-client';
 import { queryClient } from './initializers/init-react-query';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
+    <ApolloProvider client={client}>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

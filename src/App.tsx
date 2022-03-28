@@ -1,12 +1,12 @@
 import styles from './App.module.scss';
-import { TransactionsListContainer } from './components/transactions-list/TransactionList.container';
+import { Home } from './pages/Home';
 
 function App() {
   return (
     <div className={styles.app}>
       <header className={styles.appHeader}></header>
       <div className={styles.appContent}>
-        <TransactionsListContainer />
+        <Home />
       </div>
     </div>
   );
