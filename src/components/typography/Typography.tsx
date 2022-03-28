@@ -1,14 +1,15 @@
 import { PropsWithChildren } from 'react';
+import styles from './typography.module.scss';
 
-enum Variants {
+export enum TypographyVariants {
   HEADING1 = 'HEADING1',
   HEADING2 = 'HEADING2',
 }
 
 interface TypographyProps {
-  variant: Variants;
+  variant: TypographyVariants;
 }
 
 export const Typography = ({ children, variant }: PropsWithChildren<TypographyProps>) => {
-  return <div>{children}</div>;
+  return <div className={styles.typographyContainer}>{children}</div>;
 };

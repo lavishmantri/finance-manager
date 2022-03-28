@@ -1,13 +1,19 @@
 import { FormControl } from '../form-control';
+import { Modal } from '../modal';
 
-export const AddTransaction = () => {
+interface AddTransactionProps {
+  onCancel?: () => void;
+  onSave?: () => void;
+}
+
+export const AddTransaction = ({}: AddTransactionProps) => {
   const handleInputChange = (value: string) => {};
 
   return (
-    <div>
+    <Modal isOpen={false} title="Add transaction">
       <FormControl label="" value="" onChange={handleInputChange} type="input" />
       <FormControl label="" value="" onChange={handleInputChange} type="input" />
       <FormControl label="" value="" onChange={handleInputChange} type="input" />
-    </div>
+    </Modal>
   );
 };

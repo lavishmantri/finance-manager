@@ -1,5 +1,9 @@
-import { useGetTransactionsQuery } from '../../queries';
+import { useState } from 'react';
+import { Transaction } from '../../types/transaction';
+import { AddTransaction } from '../add-transaction';
+import { Button } from '../button';
 import { DataTable } from '../data-table';
+import { Typography, TypographyVariants } from '../typography';
 import styles from './transactionlist.module.scss';
 
 const columns = [
@@ -13,25 +17,27 @@ const columns = [
   },
 ];
 
-export const TransactionsList = () => {
-  const { isLoading, isError, data } = useGetTransactionsQuery();
+interface TransactionsListProps {
+  transactions: Transaction[];
+}
 
-  if (isLoading) {
-    return <>Loading...</>;
-  }
+export const TransactionsList = ({ transactions }: TransactionsListProps) => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
-  if (isError) {
-    return <div>Error loading data</div>;
-  }
+  const handleAddTransaction = () => {
+    setIsFormOpen(true);
+  };
 
-  if (!data) {
-    return <div>Empty transactions</div>;
-  }
+  const handleClose = () => {};
 
   return (
     <div className={styles.transactionContainer}>
-      <div>Transactions</div>
-      <DataTable columns={columns} rows={data} />
+      <div className={styles.transactionHeader}>
+        <Typography variant={TypographyVariants.HEADING1}>Transactions</Typography>
+        <Button onClick={handleAddTransaction}>Add transaction</Button>
+      </div>
+      <DataTable columns={columns} rows={transactions} />
+      <AddTransaction />
     </div>
   );
 };

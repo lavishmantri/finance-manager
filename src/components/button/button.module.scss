@@ -1,0 +1,14 @@
+@import '../../styles/utils.scss';
+
+.button {
+  cursor: pointer;
+  padding: 16px 24px;
+
+  &.primary {
+    background-color: $primary;
+  }
+
+  &.tertiary {
+    background-color: transparent;
+  }
+}
