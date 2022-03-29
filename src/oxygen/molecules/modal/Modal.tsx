@@ -1,43 +1,42 @@
-import { PropsWithChildren } from 'react';
-import ReactModal from 'react-modal';
-import { Button } from '../../atoms/button';
-import styles from './modal.module.scss';
-
-enum ModalVariant {
-  MEDIUM = 'MEDIUM',
-  FULLSCREEN = 'FULLSCREEN',
-}
+import React, { useState } from 'react';
+import { ModalContent } from './ModalContent';
+import { ModalOpenButton } from './ModalOpenButton';
 
 interface ModalProps {
-  isOpen: boolean;
-  className?: string;
-  variant?: ModalVariant;
-  handlePrimaryAction?: () => void;
-  onClose?: () => void;
-  title: string;
-  primaryText?: string;
-  secondaryText?: string;
+  children: React.ReactElement[];
 }
 
-export const Modal = ({
-  isOpen,
-  title,
-  className = '',
-  variant = ModalVariant.MEDIUM,
-  handlePrimaryAction = () => {},
-  onClose = () => {},
-  primaryText,
-  secondaryText,
-  children,
-}: PropsWithChildren<ModalProps>) => {
+export const Modal = ({ children }: ModalProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  let modalOpenBtnChild, modalContent;
+
+  React.Children.forEach(children, (child: React.ReactElement) => {
+    if (child.type === ModalOpenButton) {
+      modalOpenBtnChild = child;
+    }
+
+    if (child.type === ModalContent) {
+      modalContent = child;
+    }
+  });
+
+  const handleOnModalBtnClick = () => {
+    setIsModalOpen(true);
+  };
+
+  if (!React.isValidElement(modalOpenBtnChild) || !React.isValidElement(modalContent)) {
+    throw 'Modal needs to have ModalOpenButton and ModalContent Chidldren';
+  }
+
   return (
-    <ReactModal isOpen={isOpen} className={styles.content}>
-      <div className={styles.header}>{title}</div>
-      {children}
-      <div className={styles.footer}>
-        <Button onClick={onClose}>{primaryText}</Button>
-        <Button onClick={handlePrimaryAction}>{secondaryText}</Button>
-      </div>
-    </ReactModal>
+    <>
+      {React.cloneElement(modalOpenBtnChild, {
+        onBtnClick: handleOnModalBtnClick,
+      })}
+      {React.cloneElement(modalContent, {
+        isOpen: isModalOpen,
+      })}
+    </>
   );
 };

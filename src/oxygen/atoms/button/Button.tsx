@@ -8,19 +8,21 @@ export enum ButtonVariants {
   TERTIARY = 'TERTIARY',
 }
 
-interface ButtonProps {
+export interface ButtonProps {
   onClick: () => void;
   variant?: ButtonVariants;
+  className?: string;
 }
 
 export const Button = ({
   onClick,
   variant = ButtonVariants.SECONDARY,
   children,
+  className = '',
 }: PropsWithChildren<ButtonProps>) => {
   return (
     <button
-      className={cx(styles.button, {
+      className={cx(className, styles.button, {
         [styles.tertiary]: variant === ButtonVariants.TERTIARY,
       })}
       onClick={onClick}
