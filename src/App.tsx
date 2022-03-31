@@ -1,15 +1,7 @@
-import styles from './App.module.scss';
-import { Loans } from './pages/Loans';
+import { AppRouter } from './routes/AppRouter';
 
 function App() {
-  return (
-    <div className={styles.app}>
-      <header className={styles.appHeader}></header>
-      <div className={styles.appContent}>
-        <Loans />
-      </div>
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;

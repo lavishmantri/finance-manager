@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { QueryClientProvider } from 'react-query';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import { client } from './initializers/apollo-client';
@@ -13,7 +14,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </QueryClientProvider>
     </ApolloProvider>
   </React.StrictMode>,
