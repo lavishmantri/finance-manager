@@ -1,21 +1,20 @@
-import { Modal, ModalContent, ModalOpenButton } from '../../oxygen/molecules/modal';
-import { Typography, TypographyVariants } from '../../oxygen/molecules/typography';
-import { AddLoanAccount } from '../add-loan-account';
-import styles from './loanslist.module.scss';
+import { LoanAccount } from '../../services/generated/graphql-types';
+import { Datasheet } from '../datasheet';
 
-export const LoansList = () => {
+interface LoansListProps {
+  loanAccounts: LoanAccount[];
+}
+
+export const LoansList = ({ loanAccounts }: LoansListProps) => {
+  const handleSaveAccount = () => {};
+  const handleClose = () => {};
+
   return (
-    <div>
-      <div className={styles.loansHeader}>
-        <Typography variant={TypographyVariants.SUB_HEADING1}>Loans</Typography>
-        <Modal>
-          <ModalOpenButton>Add Loan account</ModalOpenButton>
-          <ModalContent title="Add loan account" primaryText="Save" secondaryText="Cancel">
-            <AddLoanAccount />
-          </ModalContent>
-        </Modal>
-      </div>
-      <div>Content</div>
-    </div>
+    <Datasheet
+      grid={loanAccounts.map(loanAccount => [
+        { columnId: 'ID', value: loanAccount.id },
+        { columnId: 'NAME', value: loanAccount.name },
+      ])}
+    />
   );
 };

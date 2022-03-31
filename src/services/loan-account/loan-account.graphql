@@ -1,0 +1,15 @@
+query GetLoanAccounts {
+  getLoanAccounts {
+    id
+    name
+    description
+  }
+}
+
+mutation AddLoanAccount($name: String!, $description: String) {
+  addLoanAccount(name: $name, description: $description) {
+    id
+    name
+    description
+  }
+}

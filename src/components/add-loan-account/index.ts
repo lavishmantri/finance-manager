@@ -1,1 +1,1 @@
-export { AddLoanAccount } from './AddLoanAccount';
+export { AddLoanAccountContainer } from './AddLoanAccount.container';

@@ -1,18 +1,22 @@
 import ReactDataSheet from 'react-datasheet';
-
 import 'react-datasheet/lib/react-datasheet.css';
+import './datasheet.css';
 
+export interface Column {
+  id: string;
+}
 export interface GridElement extends ReactDataSheet.Cell<GridElement, number> {
+  columnId: string;
   value: string | number | null;
 }
 
 class MyReactDataSheet extends ReactDataSheet<GridElement, number> {}
-let grid: GridElement[][] = [
-  [{ value: '1' }, { value: '3' }],
-  [{ value: '2' }, { value: '4' }],
-];
 
-export const Datasheet = () => {
+interface DatasheetProps {
+  grid: GridElement[][];
+}
+
+export const Datasheet = ({ grid }: DatasheetProps) => {
   return (
     <MyReactDataSheet
       data={grid}

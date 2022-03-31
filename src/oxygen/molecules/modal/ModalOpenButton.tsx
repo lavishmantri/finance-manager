@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { Button } from '../../atoms/button';
 
 export interface ModalOpenButtonProps {
-  onBtnClick?: () => void;
+  onBtnClick: () => void;
 }
 
 export const ModalOpenButton = ({
