@@ -5,10 +5,7 @@ interface LoansListProps {
   loanAccounts: LoanAccount[];
 }
 
-export const LoansList = ({ loanAccounts }: LoansListProps) => {
-  const handleSaveAccount = () => {};
-  const handleClose = () => {};
-
+export const LoanAccountsList = ({ loanAccounts }: LoansListProps) => {
   return (
     <Datasheet
       grid={loanAccounts.map(loanAccount => [

@@ -1,7 +1,7 @@
 import { LoanAccount, useGetLoanAccountsQuery } from '../../services/generated/graphql-types';
-import { LoansList } from './LoansList';
+import { LoanAccountsList } from './LoanAccountsList';
 
-export const LoansListContainer = () => {
+export const LoanAccountsListContainer = () => {
   const { data, loading, error } = useGetLoanAccountsQuery();
 
   if (loading) {
@@ -16,5 +16,5 @@ export const LoansListContainer = () => {
     return <div>No loan accounts found</div>;
   }
 
-  return <LoansList loanAccounts={data.getLoanAccounts as LoanAccount[]} />;
+  return <LoanAccountsList loanAccounts={data.getLoanAccounts as LoanAccount[]} />;
 };

@@ -3,7 +3,7 @@ import { Button } from '../../oxygen/atoms/button';
 import { Typography, TypographyVariants } from '../../oxygen/molecules/typography';
 import { Transaction } from '../../types/transaction';
 import { AddTransaction } from '../add-transaction';
-import { DataTable } from '../data-table';
+import { DataTableMUI } from '../data-table';
 import styles from './transactionlist.module.scss';
 
 const columns = [
@@ -36,7 +36,7 @@ export const TransactionsList = ({ transactions }: TransactionsListProps) => {
         <Typography variant={TypographyVariants.HEADING1}>Transactions</Typography>
         <Button onClick={handleAddTransaction}>Add transaction</Button>
       </div>
-      <DataTable columns={columns} rows={transactions} />
+      <DataTableMUI columns={columns} rows={transactions} />
       <AddTransaction />
     </div>
   );
