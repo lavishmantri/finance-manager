@@ -1,17 +1,25 @@
 import { LoanAccount } from '../../services/generated/graphql-types';
-import { Datasheet } from '../datasheet';
+import { DataTable } from '../data-table/DataTable';
 
 interface LoansListProps {
   loanAccounts: LoanAccount[];
 }
 
+const columns = [
+  {
+    Header: 'Id',
+    accessor: 'id',
+  },
+  {
+    Header: 'Name',
+    accessor: 'name',
+  },
+  {
+    Header: 'Description',
+    accessor: 'description',
+  },
+];
+
 export const LoanAccountsList = ({ loanAccounts }: LoansListProps) => {
-  return (
-    <Datasheet
-      grid={loanAccounts.map(loanAccount => [
-        { columnId: 'ID', value: loanAccount.id },
-        { columnId: 'NAME', value: loanAccount.name },
-      ])}
-    />
-  );
+  return <DataTable columns={columns} data={loanAccounts} />;
 };

@@ -7,7 +7,7 @@ export const LoanAccounts = () => {
   return (
     <div className={styles.pageContainer}>
       <div className={styles.pageHeader}>
-        <Typography variant={TypographyVariants.SUB_HEADING1}>Loans</Typography>
+        <Typography variant={TypographyVariants.SUB_HEADING1}>Loan Accounts</Typography>
         <AddLoanAccountContainer />
       </div>
       <LoanAccountsListContainer />
