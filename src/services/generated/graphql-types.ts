@@ -28,6 +28,17 @@ export type File = {
   mimetype: Scalars['String'];
 };
 
+export type Loan = {
+  __typename?: 'Loan';
+  date?: Maybe<Scalars['String']>;
+  duration?: Maybe<Scalars['String']>;
+  guarantor?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  interestRate: Scalars['Int'];
+  notes?: Maybe<Scalars['String']>;
+  principal: Scalars['Int'];
+};
+
 export type LoanAccount = {
   __typename?: 'LoanAccount';
   description?: Maybe<Scalars['String']>;
@@ -38,6 +49,7 @@ export type LoanAccount = {
 export type Mutation = {
   __typename?: 'Mutation';
   addLoanAccount: LoanAccount;
+  createLoan: Loan;
   readFile?: Maybe<Status>;
   uploadFile: File;
 };
@@ -46,6 +58,17 @@ export type Mutation = {
 export type MutationAddLoanAccountArgs = {
   description?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
+};
+
+
+export type MutationCreateLoanArgs = {
+  date?: InputMaybe<Scalars['String']>;
+  duration?: InputMaybe<Scalars['String']>;
+  guarantor?: InputMaybe<Scalars['String']>;
+  interestRate: Scalars['Int'];
+  loanAccount?: InputMaybe<Scalars['String']>;
+  notes?: InputMaybe<Scalars['String']>;
+  principal: Scalars['Int'];
 };
 
 
@@ -61,6 +84,7 @@ export type MutationUploadFileArgs = {
 export type Query = {
   __typename?: 'Query';
   getLoanAccounts?: Maybe<Array<Maybe<LoanAccount>>>;
+  getLoansList?: Maybe<Array<Maybe<Loan>>>;
   getTransactionList?: Maybe<Array<Maybe<Transaction>>>;
 };
 
