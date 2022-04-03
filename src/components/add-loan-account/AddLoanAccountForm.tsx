@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Button } from '../../oxygen/atoms/button';
+import { TextInput } from '../../oxygen/atoms/input';
 import { Modal, ModalContent, ModalOpenButton } from '../../oxygen/molecules/modal';
-import { FormControl } from '../form-control';
+import { FormControl, FormControlType } from '../form-control';
 import styles from './add-loan-account.module.scss';
 
 interface AddLoanAccountFormProps {
@@ -34,13 +35,12 @@ export const AddLoanAccountForm = ({ loading, error, saveAccount }: AddLoanAccou
             <ModalOpenButton onBtnClick={onBtnClick}>Add Loan account</ModalOpenButton>
             <ModalContent title="Add loan account" onClose={closeModal} isOpen={isOpen}>
               <div>
-                <FormControl label="Name" value={name} onChange={handleNameChange} type="input" />
-                <FormControl
-                  label="Description"
-                  value={description}
-                  onChange={handleDescriptionChange}
-                  type="input"
-                />
+                <FormControl type={FormControlType.TextInput} label="Name">
+                  <TextInput onChange={handleNameChange} />
+                </FormControl>
+                <FormControl label="Description" type={FormControlType.TextInput}>
+                  <TextInput onChange={handleDescriptionChange} />
+                </FormControl>
               </div>
               <div className={styles.footer}>
                 <Button onClick={closeModal}>Cancel</Button>

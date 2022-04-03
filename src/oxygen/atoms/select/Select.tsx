@@ -1,11 +1,12 @@
 import ReactSelect, { ActionMeta, SingleValue } from 'react-select';
 
-interface SelectOption {
+export interface SelectOption {
   value: string;
   label: string;
 }
 
 interface SelectProps {
+  value?: SelectOption;
   options: SelectOption[];
   onChange: (opt: SelectOption) => void;
   multiple?: boolean;

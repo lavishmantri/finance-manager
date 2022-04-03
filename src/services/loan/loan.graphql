@@ -1,0 +1,30 @@
+query GetLoans {
+  getLoansList {
+    id
+    interestRate
+  }
+}
+
+mutation CreateLoan(
+  $interestRate: Int!
+  $principal: Int!
+  $loanAccount: String!
+  $loanBasis: LoanBasis!
+  $duration: String
+  $date: String
+  $notes: String
+  $guarantor: String
+) {
+  createLoan(
+    interestRate: $interestRate
+    principal: $principal
+    loanAccount: $loanAccount
+    basis: $loanBasis
+    duration: $duration
+    date: $date
+    notes: $notes
+    guarantor: $guarantor
+  ) {
+    id
+  }
+}
