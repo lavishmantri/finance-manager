@@ -1,13 +1,13 @@
-import { BaseInput, BaseInputProps, InputValue } from './BaseInput';
+import { BaseInput, BaseInputProps } from './BaseInput';
 
-interface TextInputProps extends Omit<BaseInputProps<'text'>, 'type'> {
+interface TextInputProps extends Omit<BaseInputProps<'text'>, 'type' | 'onChange'> {
   onChange: (value: string) => void;
 }
 
 export const TextInput = (props: TextInputProps) => {
-  const handleChange = (val: InputValue<'text'>) => {
-    props.onChange(val);
+  const handleOnChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    props.onChange(evt.target.value);
   };
 
-  return <BaseInput {...props} onChange={handleChange} type="text" />;
+  return <BaseInput {...props} onChange={handleOnChange} type="text" />;
 };

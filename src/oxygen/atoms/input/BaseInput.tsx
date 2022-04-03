@@ -9,7 +9,7 @@ export interface BaseInputProps<Type extends InputType> {
   type: Type;
   onEnter?: (value: string) => void;
   onTab?: (value: string) => void;
-  onChange: (value: InputValue<Type>) => void;
+  onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   value?: InputValue<Type>;
 }
 
@@ -39,17 +39,13 @@ export const BaseInput = <Type extends InputType>({
     }
   };
 
-  const handleOnChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(evt.target.value as InputValue<Type>);
-  };
-
   return (
     <input
       type={type}
       value={value}
       onKeyUp={handleKeyUp}
       onKeyDown={handleKeyDown}
-      onChange={handleOnChange}
+      onChange={onChange}
       className={styles.input}
       autoFocus
     />

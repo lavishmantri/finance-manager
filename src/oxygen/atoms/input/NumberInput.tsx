@@ -1,13 +1,13 @@
-import { BaseInput, BaseInputProps, InputValue } from './BaseInput';
+import { BaseInput, BaseInputProps } from './BaseInput';
 
-interface NumberInputProps extends Omit<BaseInputProps<'number'>, 'type'> {
+interface NumberInputProps extends Omit<BaseInputProps<'number'>, 'type' | 'onChange'> {
   onChange: (value: number) => void;
 }
 
 export const NumberInput = (props: NumberInputProps) => {
-  const handleChange = (val: InputValue<'number'>) => {
-    props.onChange(val);
+  const handleOnChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    props.onChange(evt.target.valueAsNumber);
   };
 
-  return <BaseInput {...props} onChange={handleChange} type="number" />;
+  return <BaseInput {...props} onChange={handleOnChange} type="number" />;
 };
