@@ -1,7 +1,6 @@
 query GetLoans {
   getLoansList {
-    id
-    interestRate
+    ...loan
   }
 }
 
@@ -25,6 +24,6 @@ mutation CreateLoan(
     notes: $notes
     guarantor: $guarantor
   ) {
-    id
+    ...loan
   }
 }

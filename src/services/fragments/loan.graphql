@@ -1,0 +1,17 @@
+fragment loan on Loan {
+  id
+  interestRate
+  principal
+  loanAccount {
+    ...loanAccount
+  }
+  basis
+  duration
+  date
+  notes
+  guarantor {
+    id
+    name
+  }
+  tags
+}

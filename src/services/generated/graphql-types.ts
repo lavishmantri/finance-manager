@@ -28,16 +28,24 @@ export type File = {
   mimetype: Scalars['String'];
 };
 
+export type GuarantorAccount = {
+  __typename?: 'GuarantorAccount';
+  id: Scalars['String'];
+  name: Scalars['String'];
+};
+
 export type Loan = {
   __typename?: 'Loan';
   basis: LoanBasis;
   date?: Maybe<Scalars['String']>;
   duration?: Maybe<Scalars['String']>;
-  guarantor?: Maybe<Scalars['String']>;
+  guarantor?: Maybe<GuarantorAccount>;
   id: Scalars['String'];
   interestRate: Scalars['Int'];
+  loanAccount: LoanAccount;
   notes?: Maybe<Scalars['String']>;
   principal: Scalars['Int'];
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type LoanAccount = {
@@ -76,6 +84,7 @@ export type MutationcreateLoanArgs = {
   loanAccount: Scalars['String'];
   notes?: InputMaybe<Scalars['String']>;
   principal: Scalars['Int'];
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -91,7 +100,7 @@ export type MutationuploadFileArgs = {
 export type Query = {
   __typename?: 'Query';
   getLoanAccounts?: Maybe<Array<Maybe<LoanAccount>>>;
-  getLoansList?: Maybe<Array<Maybe<Loan>>>;
+  getLoansList?: Maybe<Array<Loan>>;
   getTransactionList?: Maybe<Array<Maybe<Transaction>>>;
 };
 
@@ -124,6 +133,10 @@ export enum TransactionType {
   DEBIT = 'DEBIT'
 }
 
+export type loanAccountFragment = { __typename?: 'LoanAccount', id: string, name: string, description?: string | null };
+
+export type loanFragment = { __typename?: 'Loan', id: string, interestRate: number, principal: number, basis: LoanBasis, duration?: string | null, date?: string | null, notes?: string | null, tags?: Array<string | null> | null, loanAccount: { __typename?: 'LoanAccount', id: string, name: string, description?: string | null }, guarantor?: { __typename?: 'GuarantorAccount', id: string, name: string } | null };
+
 export type GetLoanAccountsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -140,7 +153,7 @@ export type AddLoanAccountMutation = { __typename?: 'Mutation', addLoanAccount: 
 export type GetLoansQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLoansQuery = { __typename?: 'Query', getLoansList?: Array<{ __typename?: 'Loan', id: string, interestRate: number } | null> | null };
+export type GetLoansQuery = { __typename?: 'Query', getLoansList?: Array<{ __typename?: 'Loan', id: string, interestRate: number, principal: number, basis: LoanBasis, duration?: string | null, date?: string | null, notes?: string | null, tags?: Array<string | null> | null, loanAccount: { __typename?: 'LoanAccount', id: string, name: string, description?: string | null }, guarantor?: { __typename?: 'GuarantorAccount', id: string, name: string } | null }> | null };
 
 export type CreateLoanMutationVariables = Exact<{
   interestRate: Scalars['Int'];
@@ -154,14 +167,39 @@ export type CreateLoanMutationVariables = Exact<{
 }>;
 
 
-export type CreateLoanMutation = { __typename?: 'Mutation', createLoan: { __typename?: 'Loan', id: string } };
+export type CreateLoanMutation = { __typename?: 'Mutation', createLoan: { __typename?: 'Loan', id: string, interestRate: number, principal: number, basis: LoanBasis, duration?: string | null, date?: string | null, notes?: string | null, tags?: Array<string | null> | null, loanAccount: { __typename?: 'LoanAccount', id: string, name: string, description?: string | null }, guarantor?: { __typename?: 'GuarantorAccount', id: string, name: string } | null } };
 
 export type GetTransactionListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetTransactionListQuery = { __typename?: 'Query', getTransactionList?: Array<{ __typename?: 'Transaction', id: string, description?: string | null } | null> | null };
 
-
+export const loanAccountFragmentDoc = gql`
+    fragment loanAccount on LoanAccount {
+  id
+  name
+  description
+}
+    `;
+export const loanFragmentDoc = gql`
+    fragment loan on Loan {
+  id
+  interestRate
+  principal
+  loanAccount {
+    ...loanAccount
+  }
+  basis
+  duration
+  date
+  notes
+  guarantor {
+    id
+    name
+  }
+  tags
+}
+    ${loanAccountFragmentDoc}`;
 export const GetLoanAccountsDocument = gql`
     query GetLoanAccounts {
   getLoanAccounts {
@@ -237,11 +275,10 @@ export type AddLoanAccountMutationOptions = Apollo.BaseMutationOptions<AddLoanAc
 export const GetLoansDocument = gql`
     query GetLoans {
   getLoansList {
-    id
-    interestRate
+    ...loan
   }
 }
-    `;
+    ${loanFragmentDoc}`;
 
 /**
  * __useGetLoansQuery__
@@ -281,10 +318,10 @@ export const CreateLoanDocument = gql`
     notes: $notes
     guarantor: $guarantor
   ) {
-    id
+    ...loan
   }
 }
-    `;
+    ${loanFragmentDoc}`;
 export type CreateLoanMutationFn = Apollo.MutationFunction<CreateLoanMutation, CreateLoanMutationVariables>;
 
 /**

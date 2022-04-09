@@ -1,4 +1,5 @@
 import { AddLoanFormContainer } from '../components/add-loan';
+import { LoansListContainer } from '../components/loans-list/LoansList.container';
 import { Typography, TypographyVariants } from '../oxygen/molecules/typography';
 import styles from './page.module.scss';
 
@@ -9,6 +10,7 @@ export const Loans = () => {
         <Typography variant={TypographyVariants.SUB_HEADING1}>Loans</Typography>
         <AddLoanFormContainer />
       </div>
+      <LoansListContainer />
     </div>
   );
 };
