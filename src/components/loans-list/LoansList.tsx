@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { CellProps } from 'react-table';
+import { getLoanDetailPath } from '../../routes/constants';
 import { Loan } from '../../services/generated/graphql-types';
 import { DataTable } from '../data-table/DataTable';
 
@@ -9,6 +12,9 @@ const columns = [
   {
     Header: 'Id',
     accessor: 'id',
+    Cell: ({ value }: CellProps<Loan[]>) => {
+      return <Link to={getLoanDetailPath(value)}>{value}</Link>;
+    },
   },
   {
     Header: 'Date',
