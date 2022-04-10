@@ -10,7 +10,7 @@ mutation CreateLoan(
   $loanAccount: String!
   $loanBasis: LoanBasis!
   $duration: String
-  $date: String
+  $date: String!
   $notes: String
   $guarantor: String
 ) {

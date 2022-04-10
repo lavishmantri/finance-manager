@@ -17,8 +17,8 @@ interface AddLoanFormProps {
     principal: number,
     loanAccount: string,
     loanBasis: LoanBasis,
+    date: string,
     duration?: string,
-    date?: string,
     notes?: string,
     guarantor?: string,
   ) => void;
@@ -46,7 +46,13 @@ export const AddLoanForm = ({ loanAccounts, loading, error, saveLoan }: AddLoanF
           if (!loanAccount?.value) {
             return;
           }
-          saveLoan(interest, principal, loanAccount?.value, lBasis.value as LoanBasis);
+          saveLoan(
+            interest,
+            principal,
+            loanAccount?.value,
+            lBasis.value as LoanBasis,
+            new Date().toDateString(),
+          );
           closeModal();
         };
         return (

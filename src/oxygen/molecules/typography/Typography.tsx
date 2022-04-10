@@ -7,6 +7,8 @@ export enum TypographyVariants {
   SUB_HEADING1 = 'SUB_HEADING1',
   SUB_HEADING2 = 'SUB_HEADING2',
   LABEL = 'LABEL',
+  BODY1 = 'BODY1',
+  BODY2 = 'BODY2',
 }
 
 interface TypographyProps {
@@ -14,5 +16,5 @@ interface TypographyProps {
 }
 
 export const Typography = ({ children, variant }: PropsWithChildren<TypographyProps>) => {
-  return <div className={styles.typographyContainer}>{children}</div>;
+  return <div className={styles.typographyContainer.toLowerCase()}>{children}</div>;
 };

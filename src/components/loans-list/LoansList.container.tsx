@@ -9,7 +9,7 @@ export const LoansListContainer = () => {
   }
 
   if (error) {
-    return <div>Error.... - {error}</div>;
+    return <div>Error.... - {error.message}</div>;
   }
 
   if (!data?.getLoansList || data?.getLoansList.length === 0) {

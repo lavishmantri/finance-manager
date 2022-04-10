@@ -23,8 +23,8 @@ export const AddLoanFormContainer = () => {
     principal: number,
     loanAccount: string,
     loanBasis: LoanBasis,
+    date: string,
     duration?: string,
-    date?: string,
     notes?: string,
     guarantor?: string,
   ) => {
