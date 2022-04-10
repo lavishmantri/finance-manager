@@ -1,4 +1,5 @@
 import { Children, ReactElement } from 'react';
+import { DatePicker } from '../../oxygen/atoms/date-picker/DatePicker';
 import { NumberInput, TextInput } from '../../oxygen/atoms/input';
 import { Select, SelectOption } from '../../oxygen/atoms/select/Select';
 import styles from './form-control.module.scss';
@@ -8,6 +9,7 @@ export enum FormControlType {
   NumberInput = 'NumberInput',
   SingleSelect = 'SingleSelect',
   MultiSelect = 'MultiSelect',
+  DatePicker = 'DatePicker',
 }
 
 export declare type FormControlValue<Type extends FormControlType> =
@@ -38,6 +40,7 @@ export const FormControl = <Type extends FormControlType>({
     if (child.type === TextInput) {
     } else if (child.type === NumberInput) {
     } else if (child.type === Select) {
+    } else if (child.type === DatePicker) {
     } else {
       throw 'Only defined components can be child of FormControl';
     }

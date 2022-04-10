@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '../../oxygen/atoms/button';
+import { DatePicker } from '../../oxygen/atoms/date-picker/DatePicker';
 import { NumberInput } from '../../oxygen/atoms/input';
 import { Select, SelectOption } from '../../oxygen/atoms/select';
 import { Modal, ModalContent, ModalOpenButton } from '../../oxygen/molecules/modal';
@@ -34,6 +35,7 @@ export const AddLoanForm = ({ loanAccounts, loading, error, saveLoan }: AddLoanF
   const [principal, setPrincipal] = useState(0);
   const [loanAccount, setLoanAccount] = useState<SelectOption>();
   const [lBasis, setLBasis] = useState<SelectOption>(loanBasisOptions[0]);
+  const [date, setDate] = useState<Date>(new Date());
 
   const handleLoanAccountSelection = (val: SelectOption) => {
     setLoanAccount(val);
@@ -75,6 +77,9 @@ export const AddLoanForm = ({ loanAccounts, loading, error, saveLoan }: AddLoanF
                 </FormControl>
                 <FormControl label="Select principal" type={FormControlType.NumberInput}>
                   <NumberInput onChange={setPrincipal} value={principal} />
+                </FormControl>
+                <FormControl label="Loan start date" type={FormControlType.DatePicker}>
+                  <DatePicker date={date} onChange={setDate} />
                 </FormControl>
                 <FormControl label="Select loan basis" type={FormControlType.SingleSelect}>
                   <Select options={loanBasisOptions} onChange={setLBasis} value={lBasis} />
