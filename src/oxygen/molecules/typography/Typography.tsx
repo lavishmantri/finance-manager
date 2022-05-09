@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import { PropsWithChildren } from 'react';
 import styles from './typography.module.scss';
 
@@ -16,5 +17,13 @@ interface TypographyProps {
 }
 
 export const Typography = ({ children, variant }: PropsWithChildren<TypographyProps>) => {
-  return <div className={styles.typographyContainer.toLowerCase()}>{children}</div>;
+  return (
+    <div
+      className={cx(styles.typographyContainer, {
+        [styles[variant.toLowerCase()]]: true,
+      })}
+    >
+      {children}
+    </div>
+  );
 };

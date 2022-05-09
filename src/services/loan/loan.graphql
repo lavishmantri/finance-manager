@@ -5,7 +5,7 @@ query GetLoans {
 }
 
 mutation CreateLoan(
-  $interestRate: Int!
+  $interestRate: Float!
   $principal: Int!
   $loanAccount: String!
   $loanBasis: LoanBasis!
@@ -25,5 +25,16 @@ mutation CreateLoan(
     guarantor: $guarantor
   ) {
     ...loan
+  }
+}
+
+query LoanDetails($loanId: String) {
+  getLoanDetails(loanId: $loanId) {
+    loan {
+      ...loan
+    }
+    loanComputedDetails {
+      ...loanComputedDetails
+    }
   }
 }
