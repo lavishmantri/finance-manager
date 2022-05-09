@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { CellProps } from 'react-table';
 import { getLoanDetailPath } from '../../routes/constants';
 import { Loan } from '../../services/generated/graphql-types';
+import { formatDate } from '../../utils/date-formatter';
 import { DataTable } from '../data-table/DataTable';
 
 interface LoansListProps {
@@ -19,6 +20,9 @@ const columns = [
   {
     Header: 'Date',
     accessor: 'date',
+    Cell: ({ value }: CellProps<Loan[]>) => {
+      return <>{formatDate(value).toDateString()}</>;
+    },
   },
   {
     Header: 'Loan Account',
