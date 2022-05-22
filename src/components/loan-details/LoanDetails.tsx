@@ -14,11 +14,11 @@ export const LoanDetails = ({ loan, loanComputedDetails }: LoanDetailsProps) => 
         <Typography variant={TypographyVariants.SUB_HEADING1}>Principal</Typography>
         <Typography variant={TypographyVariants.BODY1}>{loan.principal}</Typography>
       </div>
-      <div>
+      <div className={styles.section}>
         <Typography variant={TypographyVariants.SUB_HEADING1}>Interest rate</Typography>
         <Typography variant={TypographyVariants.BODY1}>{loan.interestRate}</Typography>
       </div>
-      <div>
+      <div className={styles.section}>
         <Typography variant={TypographyVariants.SUB_HEADING1}>Interest Earned</Typography>
         <Typography variant={TypographyVariants.BODY1}>
           {loanComputedDetails.totalInterestEarned}

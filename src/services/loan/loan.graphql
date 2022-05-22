@@ -1,6 +1,18 @@
+query GetLoansListAggregationDetails {
+  getLoansListAggregationDetails {
+    totalPrincipalInvested
+    netXIRR
+    absoluteReturns
+    expectedPostClosureXIRR
+    averageInterestRate
+  }
+}
+
 query GetLoans {
   getLoansList {
-    ...loan
+    loans {
+      ...loan
+    }
   }
 }
 

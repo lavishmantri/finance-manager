@@ -80,6 +80,20 @@ export type LoanDetailsResponse = {
   loanComputedDetails: LoanComputedDetails;
 };
 
+export type LoanListAggregationDetails = {
+  __typename?: 'LoanListAggregationDetails';
+  absoluteReturns?: Maybe<Scalars['Float']>;
+  averageInterestRate: Scalars['Float'];
+  expectedPostClosureXIRR?: Maybe<Scalars['Float']>;
+  netXIRR?: Maybe<Scalars['Float']>;
+  totalPrincipalInvested: Scalars['Int'];
+};
+
+export type LoanListResponse = {
+  __typename?: 'LoanListResponse';
+  loans?: Maybe<Array<Loan>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addLoanAccount: LoanAccount;
@@ -139,7 +153,8 @@ export type Query = {
   __typename?: 'Query';
   getLoanAccounts?: Maybe<Array<Maybe<LoanAccount>>>;
   getLoanDetails: LoanDetailsResponse;
-  getLoansList?: Maybe<Array<Loan>>;
+  getLoansList: LoanListResponse;
+  getLoansListAggregationDetails: LoanListAggregationDetails;
   getTransactionList?: Maybe<Array<Maybe<Transaction>>>;
 };
 
@@ -196,10 +211,15 @@ export type AddLoanAccountMutationVariables = Exact<{
 
 export type AddLoanAccountMutation = { __typename?: 'Mutation', addLoanAccount: { __typename?: 'LoanAccount', id: string, name: string, description?: string | null } };
 
+export type GetLoansListAggregationDetailsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetLoansListAggregationDetailsQuery = { __typename?: 'Query', getLoansListAggregationDetails: { __typename?: 'LoanListAggregationDetails', totalPrincipalInvested: number, netXIRR?: number | null, absoluteReturns?: number | null, expectedPostClosureXIRR?: number | null, averageInterestRate: number } };
+
 export type GetLoansQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLoansQuery = { __typename?: 'Query', getLoansList?: Array<{ __typename?: 'Loan', id: string, interestRate: number, principal: number, basis: LoanBasis, duration?: string | null, date: any, notes?: string | null, tags?: Array<string | null> | null, loanAccount: { __typename?: 'LoanAccount', id: string, name: string, description?: string | null }, guarantor?: { __typename?: 'GuarantorAccount', id: string, name: string } | null }> | null };
+export type GetLoansQuery = { __typename?: 'Query', getLoansList: { __typename?: 'LoanListResponse', loans?: Array<{ __typename?: 'Loan', id: string, interestRate: number, principal: number, basis: LoanBasis, duration?: string | null, date: any, notes?: string | null, tags?: Array<string | null> | null, loanAccount: { __typename?: 'LoanAccount', id: string, name: string, description?: string | null }, guarantor?: { __typename?: 'GuarantorAccount', id: string, name: string } | null }> | null } };
 
 export type CreateLoanMutationVariables = Exact<{
   interestRate: Scalars['Float'];
@@ -332,10 +352,50 @@ export function useAddLoanAccountMutation(baseOptions?: Apollo.MutationHookOptio
 export type AddLoanAccountMutationHookResult = ReturnType<typeof useAddLoanAccountMutation>;
 export type AddLoanAccountMutationResult = Apollo.MutationResult<AddLoanAccountMutation>;
 export type AddLoanAccountMutationOptions = Apollo.BaseMutationOptions<AddLoanAccountMutation, AddLoanAccountMutationVariables>;
+export const GetLoansListAggregationDetailsDocument = gql`
+    query GetLoansListAggregationDetails {
+  getLoansListAggregationDetails {
+    totalPrincipalInvested
+    netXIRR
+    absoluteReturns
+    expectedPostClosureXIRR
+    averageInterestRate
+  }
+}
+    `;
+
+/**
+ * __useGetLoansListAggregationDetailsQuery__
+ *
+ * To run a query within a React component, call `useGetLoansListAggregationDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetLoansListAggregationDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetLoansListAggregationDetailsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetLoansListAggregationDetailsQuery(baseOptions?: Apollo.QueryHookOptions<GetLoansListAggregationDetailsQuery, GetLoansListAggregationDetailsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetLoansListAggregationDetailsQuery, GetLoansListAggregationDetailsQueryVariables>(GetLoansListAggregationDetailsDocument, options);
+      }
+export function useGetLoansListAggregationDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLoansListAggregationDetailsQuery, GetLoansListAggregationDetailsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetLoansListAggregationDetailsQuery, GetLoansListAggregationDetailsQueryVariables>(GetLoansListAggregationDetailsDocument, options);
+        }
+export type GetLoansListAggregationDetailsQueryHookResult = ReturnType<typeof useGetLoansListAggregationDetailsQuery>;
+export type GetLoansListAggregationDetailsLazyQueryHookResult = ReturnType<typeof useGetLoansListAggregationDetailsLazyQuery>;
+export type GetLoansListAggregationDetailsQueryResult = Apollo.QueryResult<GetLoansListAggregationDetailsQuery, GetLoansListAggregationDetailsQueryVariables>;
 export const GetLoansDocument = gql`
     query GetLoans {
   getLoansList {
-    ...loan
+    loans {
+      ...loan
+    }
   }
 }
     ${loanFragmentDoc}`;

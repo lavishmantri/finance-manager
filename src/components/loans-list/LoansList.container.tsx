@@ -12,8 +12,8 @@ export const LoansListContainer = () => {
     return <div>Error.... - {error.message}</div>;
   }
 
-  if (!data?.getLoansList || data?.getLoansList.length === 0) {
+  if (!data?.getLoansList || data?.getLoansList.loans?.length === 0) {
     return <div>No data</div>;
   }
-  return <LoansList loans={data.getLoansList} />;
+  return <LoansList loans={data.getLoansList.loans || []} />;
 };
