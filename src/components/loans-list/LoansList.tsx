@@ -3,10 +3,12 @@ import { CellProps } from 'react-table';
 import { getLoanDetailPath } from '../../routes/constants';
 import { Loan } from '../../services/generated/graphql-types';
 import { formatDate } from '../../utils/date-formatter';
-import { DataTable } from '../data-table/DataTable';
+import { ColumnCellDefinedProps, DataTable } from '../data-table/DataTable';
+import styles from './loansList.module.scss';
 
 interface LoansListProps {
   loans: Loan[];
+  deleteLoan: (loanId: string) => void;
 }
 
 const columns = [
@@ -52,8 +54,31 @@ const columns = [
     Header: 'Basis',
     accessor: 'basis',
   },
+  {
+    Header: 'Delete',
+    accessor: 'delete',
+    Cell: (props: ColumnCellDefinedProps & CellProps<Record<string, unknown>>) => {
+      const handleCellClick = () => {
+        props.onClick(props.row.id);
+      };
+      return (
+        <div className={styles.delete} onClick={handleCellClick}>
+          delete
+        </div>
+      );
+    },
+  },
 ];
 
-export const LoansList = ({ loans }: LoansListProps) => {
-  return <DataTable columns={columns} data={loans} />;
+export const LoansList = ({ loans, deleteLoan }: LoansListProps) => {
+  const handleDelete = (idx: unknown) => {
+    deleteLoan(loans[idx as number].id);
+  };
+  return (
+    <DataTable
+      columns={columns}
+      data={loans}
+      columnCellProps={[{ columnId: 'delete', props: { onClick: handleDelete } }]}
+    />
+  );
 };

@@ -40,6 +40,12 @@ mutation CreateLoan(
   }
 }
 
+mutation DeleteLoan($loanId: String!) {
+  deleteLoan(loanId: $loanId) {
+    status
+  }
+}
+
 query LoanDetails($loanId: String) {
   getLoanDetails(loanId: $loanId) {
     loan {

@@ -2,12 +2,20 @@ import React from 'react';
 import { Column, useTable } from 'react-table';
 import styles from './datatable.module.scss';
 
+export interface ColumnCellDefinedProps {
+  onClick: (value: unknown, columnId?: string) => void;
+}
+interface ColumnCellProps {
+  columnId: string;
+  props: ColumnCellDefinedProps;
+}
 interface DataTableProps {
   columns: Column<Record<string, unknown>>[];
   data: Record<string, unknown>[];
+  columnCellProps?: ColumnCellProps[];
 }
 
-export const DataTable = ({ columns, data }: DataTableProps) => {
+export const DataTable = ({ columns, data, columnCellProps = [] }: DataTableProps) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
     columns,
     data,
@@ -32,9 +40,15 @@ export const DataTable = ({ columns, data }: DataTableProps) => {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map(cell => {
+                const columnCellPropsToApply = columnCellProps.find(
+                  cCellProp => cCellProp.columnId === cell.column.id,
+                );
+
                 return (
                   <td {...cell.getCellProps()} className={styles.cell}>
-                    {cell.render('Cell')}
+                    {cell.render('Cell', {
+                      onClick: columnCellPropsToApply?.props?.onClick,
+                    })}
                   </td>
                 );
               })}
