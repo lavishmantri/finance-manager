@@ -15,14 +15,14 @@ const columns = [
   {
     Header: 'Id',
     accessor: 'id',
-    Cell: ({ value }: CellProps<Loan[]>) => {
+    Cell: ({ value }: CellProps<Record<string, unknown>>) => {
       return <Link to={getLoanDetailPath(value)}>{value}</Link>;
     },
   },
   {
     Header: 'Date',
     accessor: 'date',
-    Cell: ({ value }: CellProps<Loan[]>) => {
+    Cell: ({ value }: CellProps<Record<string, unknown>>) => {
       return <>{formatDate(value).toDateString()}</>;
     },
   },
@@ -59,7 +59,7 @@ const columns = [
     accessor: 'delete',
     Cell: (props: ColumnCellDefinedProps & CellProps<Record<string, unknown>>) => {
       const handleCellClick = () => {
-        props.onClick(props.row.id);
+        props.onClick && props.onClick(props.row.id);
       };
       return (
         <div className={styles.delete} onClick={handleCellClick}>

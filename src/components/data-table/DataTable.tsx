@@ -1,9 +1,8 @@
-import React from 'react';
 import { Column, useTable } from 'react-table';
 import styles from './datatable.module.scss';
 
 export interface ColumnCellDefinedProps {
-  onClick: (value: unknown, columnId?: string) => void;
+  onClick?: (value: unknown, columnId?: string) => void;
 }
 interface ColumnCellProps {
   columnId: string;
@@ -16,7 +15,9 @@ interface DataTableProps {
 }
 
 export const DataTable = ({ columns, data, columnCellProps = [] }: DataTableProps) => {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable<
+    Record<string, unknown>
+  >({
     columns,
     data,
   });
