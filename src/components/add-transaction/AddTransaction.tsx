@@ -6,5 +6,5 @@ interface AddTransactionProps {
 export const AddTransaction = ({}: AddTransactionProps) => {
   const handleInputChange = (value: string) => {};
 
-  return <></>;
+  return <>AddTransaction</>;
 };

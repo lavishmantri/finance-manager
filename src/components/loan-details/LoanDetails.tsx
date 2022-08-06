@@ -1,3 +1,4 @@
+import { Button } from '../../oxygen/atoms/button';
 import { Typography, TypographyVariants } from '../../oxygen/molecules/typography';
 import { Loan, LoanComputedDetails } from '../../services/generated/graphql-types';
 import styles from './loanDetails.module.scss';
@@ -8,21 +9,28 @@ interface LoanDetailsProps {
 }
 
 export const LoanDetails = ({ loan, loanComputedDetails }: LoanDetailsProps) => {
+  const handleAddTransactionClick = () => {};
+
   return (
     <div>
-      <div className={styles.section}>
-        <Typography variant={TypographyVariants.SUB_HEADING1}>Principal</Typography>
-        <Typography variant={TypographyVariants.BODY1}>{loan.principal}</Typography>
+      <div>
+        <Button onClick={handleAddTransactionClick}>Add Transaction</Button>
       </div>
-      <div className={styles.section}>
-        <Typography variant={TypographyVariants.SUB_HEADING1}>Interest rate</Typography>
-        <Typography variant={TypographyVariants.BODY1}>{loan.interestRate}</Typography>
-      </div>
-      <div className={styles.section}>
-        <Typography variant={TypographyVariants.SUB_HEADING1}>Interest Earned</Typography>
-        <Typography variant={TypographyVariants.BODY1}>
-          {loanComputedDetails.totalInterestEarned}
-        </Typography>
+      <div>
+        <div className={styles.section}>
+          <Typography variant={TypographyVariants.SUB_HEADING1}>Principal</Typography>
+          <Typography variant={TypographyVariants.BODY1}>{loan.principal}</Typography>
+        </div>
+        <div className={styles.section}>
+          <Typography variant={TypographyVariants.SUB_HEADING1}>Interest rate</Typography>
+          <Typography variant={TypographyVariants.BODY1}>{loan.interestRate}</Typography>
+        </div>
+        <div className={styles.section}>
+          <Typography variant={TypographyVariants.SUB_HEADING1}>Interest Earned</Typography>
+          <Typography variant={TypographyVariants.BODY1}>
+            {loanComputedDetails.totalInterestEarned}
+          </Typography>
+        </div>
       </div>
     </div>
   );

@@ -1,26 +1,23 @@
 import { ApolloProvider } from '@apollo/client';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Modal from 'react-modal';
-import { QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import { client } from './initializers/apollo-client';
-import { queryClient } from './initializers/init-react-query';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container!);
+root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </QueryClientProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById('root'),
 );
 
 Modal.setAppElement('#root');
