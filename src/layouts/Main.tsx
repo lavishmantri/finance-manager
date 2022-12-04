@@ -1,14 +1,20 @@
+import { AppShell, Header } from '@mantine/core';
 import { Outlet } from 'react-router-dom';
+import { AppHeader } from '../components/app-header/AppHeader';
 import { Navbar } from '../components/navbar/Navbar';
-import styles from './layout.module.scss';
 
 export const MainLayout = () => {
   return (
-    <div>
-      <Navbar />
-      <div className={styles.appContent}>
-        <Outlet />
-      </div>
-    </div>
+    <AppShell
+      padding="md"
+      navbar={<Navbar />}
+      header={
+        <Header height={60} p="xs">
+          <AppHeader />
+        </Header>
+      }
+    >
+      <Outlet />
+    </AppShell>
   );
 };
