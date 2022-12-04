@@ -1,3 +1,4 @@
+import { Textarea } from '@chakra-ui/react';
 import { Children, ReactElement } from 'react';
 import { DatePicker } from '../../oxygen/atoms/date-picker/DatePicker';
 import { NumberInput, TextInput } from '../../oxygen/atoms/input';
@@ -41,6 +42,7 @@ export const FormControl = <Type extends FormControlType>({
     } else if (child.type === NumberInput) {
     } else if (child.type === Select) {
     } else if (child.type === DatePicker) {
+    } else if (child.type === Textarea) {
     } else {
       throw 'Only defined components can be child of FormControl';
     }

@@ -1,6 +1,6 @@
-import { Button } from '../../oxygen/atoms/button';
 import { Typography, TypographyVariants } from '../../oxygen/molecules/typography';
 import { Loan, LoanComputedDetails } from '../../services/generated/graphql-types';
+import { AddLoanTransactionContainer } from '../add-loan-transaction/AddLoanTransaction.container';
 import styles from './loanDetails.module.scss';
 
 interface LoanDetailsProps {
@@ -9,14 +9,12 @@ interface LoanDetailsProps {
 }
 
 export const LoanDetails = ({ loan, loanComputedDetails }: LoanDetailsProps) => {
-  const handleAddTransactionClick = () => {};
-
   return (
     <div>
-      <div>
-        <Button onClick={handleAddTransactionClick}>Add Transaction</Button>
+      <div className={styles.pageHeader}>
+        <AddLoanTransactionContainer loanId={loan.id} />
       </div>
-      <div>
+      <div className={styles.pageContent}>
         <div className={styles.section}>
           <Typography variant={TypographyVariants.SUB_HEADING1}>Principal</Typography>
           <Typography variant={TypographyVariants.BODY1}>{loan.principal}</Typography>

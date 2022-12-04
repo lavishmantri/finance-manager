@@ -1,0 +1,22 @@
+query GetLoanLoanTransactions {
+  getLoanTransactions {
+    id
+    loanId
+    amount
+    date
+    notes
+    type
+  }
+}
+
+mutation CreateLoanTransaction(
+  $loanId: String!
+  $amount: Int!
+  $date: String!
+  $type: LoanTransactionType!
+  $notes: String
+) {
+  createLoanTransaction(loanId: $loanId, amount: $amount, date: $date, notes: $notes, type: $type) {
+    status
+  }
+}
