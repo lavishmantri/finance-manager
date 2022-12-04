@@ -1,7 +1,7 @@
-import { Box as ChakraBox, BoxProps as ChakraBoxProps } from '@chakra-ui/react';
+import { Box as MantineBox, BoxProps as MantineBoxProps } from '@mantine/core';
 
-interface BoxProps extends ChakraBoxProps {}
+interface BoxProps extends MantineBoxProps {}
 
 export const Box = (props: BoxProps) => {
-  return <ChakraBox {...props} />;
+  return <MantineBox {...props} />;
 };

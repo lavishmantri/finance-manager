@@ -1,6 +1,6 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { MantineProvider } from '@mantine/core';
 import { PropsWithChildren } from 'react';
 
 export const ThemeProvider = ({ children }: PropsWithChildren<{}>) => {
-  return <ChakraProvider>{children}</ChakraProvider>;
+  return <MantineProvider>{children}</MantineProvider>;
 };

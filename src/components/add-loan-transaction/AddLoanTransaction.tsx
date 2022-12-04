@@ -1,4 +1,4 @@
-import { Textarea } from '@chakra-ui/react';
+import { Textarea } from '@mantine/core';
 import { ChangeEvent, useState } from 'react';
 import { DatePicker } from '../../oxygen/atoms/date-picker/DatePicker';
 import { NumberInput } from '../../oxygen/atoms/input';

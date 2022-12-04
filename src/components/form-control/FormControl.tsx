@@ -1,9 +1,9 @@
-import { Textarea } from '@chakra-ui/react';
+import { Textarea } from '@mantine/core';
 import { Children, ReactElement } from 'react';
 import { DatePicker } from '../../oxygen/atoms/date-picker/DatePicker';
 import { NumberInput, TextInput } from '../../oxygen/atoms/input';
 import { Select, SelectOption } from '../../oxygen/atoms/select/Select';
-import styles from './form-control.module.scss';
+import { useFormControlStyles } from './form-control.styles';
 
 export enum FormControlType {
   TextInput = 'TextInput',
@@ -33,6 +33,7 @@ export const FormControl = <Type extends FormControlType>({
   label,
   children,
 }: FormControlProps<Type>) => {
+  const styles = useFormControlStyles();
   if (!type) {
     throw 'prop `type` needs to be mentioned';
   }
@@ -49,7 +50,7 @@ export const FormControl = <Type extends FormControlType>({
   });
 
   return (
-    <div className={styles.formControl}>
+    <div className={styles.classes.formControl}>
       {label && <label>{label}</label>}
       {children}
     </div>
