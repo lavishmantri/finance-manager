@@ -1,9 +1,10 @@
-import { Text, ThemeIcon, Timeline as MantineTimeline, TimelineItem } from '@mantine/core';
+import { ThemeIcon, Timeline as MantineTimeline, TimelineItem } from '@mantine/core';
 import { IconCalendarEvent } from '@tabler/icons';
+import { TimelineItemContent } from './TimelineItemContent';
 
 export const Timeline = () => {
   return (
-    <MantineTimeline>
+    <MantineTimeline align="right">
       <TimelineItem
         bullet={
           <ThemeIcon>
@@ -13,7 +14,7 @@ export const Timeline = () => {
         bulletSize={42}
         title="Timeline Item"
       >
-        <Text color="gray.6">The description of timeline item</Text>
+        <TimelineItemContent />
       </TimelineItem>
       <TimelineItem
         bullet={
@@ -23,8 +24,9 @@ export const Timeline = () => {
         }
         bulletSize={42}
         title="Timeline Item"
+        align="left"
       >
-        <Text color="gray.6">The description of timeline item</Text>
+        <TimelineItemContent />
       </TimelineItem>
       <TimelineItem
         bullet={
@@ -34,8 +36,9 @@ export const Timeline = () => {
         }
         bulletSize={42}
         title="Timeline Item"
+        align="right"
       >
-        <Text color="gray.6">The description of timeline item</Text>
+        <TimelineItemContent />
       </TimelineItem>
     </MantineTimeline>
   );

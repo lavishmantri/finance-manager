@@ -1,4 +1,5 @@
 export enum APP_ROUTES {
+  BASE = 'BASE',
   LOANS = 'LOANS',
   LOAN_DETAILS = 'LOAN_DETAILS',
   LOAN_ACCOUNTS = 'LOAN_ACCOUNTS',
@@ -6,6 +7,7 @@ export enum APP_ROUTES {
 }
 
 export const routePaths: Record<APP_ROUTES, string> = {
+  [APP_ROUTES.BASE]: '/',
   [APP_ROUTES.LOANS]: '/loans',
   [APP_ROUTES.LOAN_DETAILS]: '/loan/:id',
   [APP_ROUTES.LOAN_ACCOUNTS]: '/loan-accounts',
