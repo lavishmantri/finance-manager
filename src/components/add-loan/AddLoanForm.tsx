@@ -53,7 +53,7 @@ export const AddLoanForm = ({ loanAccounts, loading, error, saveLoan }: AddLoanF
             principal,
             loanAccount?.value,
             lBasis.value as LoanBasis,
-            new Date().toDateString(),
+            date.toDateString(),
           );
           closeModal();
         };

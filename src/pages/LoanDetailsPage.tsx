@@ -6,7 +6,7 @@ export const LoanDetailsPage = () => {
   return (
     <div className={styles.pageContainer}>
       <div className={styles.pageHeader}>
-        <Typography variant={TypographyVariants.SUB_HEADING1}>Add Loan Transaction</Typography>
+        <Typography variant={TypographyVariants.SUB_HEADING1}>Loan details</Typography>
       </div>
       <LoanDetailsContainer />
     </div>
