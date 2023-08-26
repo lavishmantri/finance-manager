@@ -24,7 +24,7 @@ export const LoansListDetails = ({ loanListDetails }: LoansListDetailsProps) => 
         </div>
         <div className={styles.section}>
           <Typography variant={TypographyVariants.SUB_HEADING1}>
-            Average rate of Interest
+            Weighted average rate of Interest
           </Typography>
           <Typography variant={TypographyVariants.BODY1}>
             {loanListDetails.averageInterestRate}

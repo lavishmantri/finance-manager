@@ -1,5 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { MainLayout } from '../layouts/Main';
+import { BankAccounts } from '../pages/BankAccounts';
+import { DematAccounts } from '../pages/DematAccounts';
 import { LoanAccounts } from '../pages/LoanAccounts';
 import { LoanDetailsPage } from '../pages/LoanDetailsPage';
 import { LoansDashboard } from '../pages/LoansDashboard';
@@ -18,6 +20,8 @@ export const AppRouter = () => {
         <Route path={getRoutePath(APP_ROUTES.LOAN_ACCOUNTS)} element={<LoanAccounts />} />
         <Route path={getRoutePath(APP_ROUTES.LOAN_DETAILS)} element={<LoanDetailsPage />} />
         <Route path={getRoutePath(APP_ROUTES.PLANNER)} element={<Planner />} />
+        <Route path={getRoutePath(APP_ROUTES.BANK_ACCOUNTS)} element={<BankAccounts />} />
+        <Route path={getRoutePath(APP_ROUTES.DEMAT_ACCOUNTS)} element={<DematAccounts />} />
       </Route>
     </Routes>
   );
