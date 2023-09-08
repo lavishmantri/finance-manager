@@ -6,6 +6,7 @@ import { LoanAccounts } from '../pages/LoanAccounts';
 import { LoanDetailsPage } from '../pages/LoanDetailsPage';
 import { LoansDashboard } from '../pages/LoansDashboard';
 import { Planner } from '../pages/Planner';
+import { Salary } from '../pages/Salary';
 import { APP_ROUTES, getRoutePath } from './constants';
 
 export const AppRouter = () => {
@@ -22,6 +23,7 @@ export const AppRouter = () => {
         <Route path={getRoutePath(APP_ROUTES.PLANNER)} element={<Planner />} />
         <Route path={getRoutePath(APP_ROUTES.BANK_ACCOUNTS)} element={<BankAccounts />} />
         <Route path={getRoutePath(APP_ROUTES.DEMAT_ACCOUNTS)} element={<DematAccounts />} />
+        <Route path={getRoutePath(APP_ROUTES.SALARY)} element={<Salary />} />
       </Route>
     </Routes>
   );

@@ -12,6 +12,7 @@ export const Navbar = () => {
           <NavLink to={getRoutePath(APP_ROUTES.PLANNER)}>Planner</NavLink>
           <NavLink to={getRoutePath(APP_ROUTES.BANK_ACCOUNTS)}>Bank Accounts</NavLink>
           <NavLink to={getRoutePath(APP_ROUTES.DEMAT_ACCOUNTS)}>Demat Accounts</NavLink>
+          <NavLink to={getRoutePath(APP_ROUTES.SALARY)}>Salary</NavLink>
         </Stack>
       </MantineNavbar.Section>
       <MantineNavbar.Section>{/* Footer with user */}</MantineNavbar.Section>
