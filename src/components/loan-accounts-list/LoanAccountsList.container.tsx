@@ -1,8 +1,13 @@
-import { LoanAccount, useGetLoanAccountsQuery } from '../../services/generated/graphql-types';
+import {
+  LoanAccount,
+  useDeleteLoanAccountMutation,
+  useGetLoanAccountsQuery,
+} from '../../services/generated/graphql-types';
 import { LoanAccountsList } from './LoanAccountsList';
 
 export const LoanAccountsListContainer = () => {
   const { data, loading, error } = useGetLoanAccountsQuery();
+  const [deleteLoanAccount] = useDeleteLoanAccountMutation();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -16,5 +21,18 @@ export const LoanAccountsListContainer = () => {
     return <div>No loan accounts found</div>;
   }
 
-  return <LoanAccountsList loanAccounts={data.getLoanAccounts as LoanAccount[]} />;
+  const handleDelete = (id: string) => {
+    deleteLoanAccount({
+      variables: {
+        id,
+      },
+    });
+  };
+
+  return (
+    <LoanAccountsList
+      loanAccounts={data.getLoanAccounts as LoanAccount[]}
+      handleDelete={handleDelete}
+    />
+  );
 };

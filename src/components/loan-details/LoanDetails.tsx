@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { Typography, TypographyVariants } from '../../oxygen/molecules/typography';
 import { Loan, LoanComputedDetails } from '../../services/generated/graphql-types';
 import { AddLoanTransactionContainer } from '../add-loan-transaction/AddLoanTransaction.container';
+import { LoanTransactionListContainer } from '../loan-transaction-list/LoanTransactionList.container';
 import styles from './loanDetails.module.scss';
 
 interface LoanDetailsProps {
@@ -48,6 +49,9 @@ export const LoanDetails = ({ loan, loanComputedDetails }: LoanDetailsProps) => 
             })}
           </Typography>
         </div>
+      </div>
+      <div>
+        <LoanTransactionListContainer loanId={loan.id} />
       </div>
     </div>
   );

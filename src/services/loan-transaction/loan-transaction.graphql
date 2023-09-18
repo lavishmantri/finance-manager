@@ -1,5 +1,5 @@
-query GetLoanLoanTransactions {
-  getLoanTransactions {
+query GetLoanLoanTransactions($loanId: String!) {
+  getLoanTransactions(loanId: $loanId) {
     id
     loanId
     amount

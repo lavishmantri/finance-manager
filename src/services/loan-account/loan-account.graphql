@@ -13,3 +13,9 @@ mutation AddLoanAccount($name: String!, $description: String) {
     description
   }
 }
+
+mutation DeleteLoanAccount($id: String!) {
+  deleteLoanAccount(id: $id) {
+    status
+  }
+}

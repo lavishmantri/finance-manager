@@ -1,6 +1,0 @@
-query GetTransactionList {
-  getTransactionList {
-    id
-    description
-  }
-}
