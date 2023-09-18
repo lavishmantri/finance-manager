@@ -8,6 +8,7 @@ import styles from './loansList.module.scss';
 
 interface LoansListProps {
   loans: Loan[];
+  closeLoan: (loanId: string) => void;
   deleteLoan: (loanId: string) => void;
 }
 
@@ -55,6 +56,24 @@ const columns = [
     accessor: 'basis',
   },
   {
+    Header: 'State',
+    accessor: 'state',
+  },
+  {
+    Header: 'Close',
+    accessor: 'close',
+    Cell: (props: ColumnCellDefinedProps & CellProps<Record<string, unknown>>) => {
+      const handleCellClick = () => {
+        props.onClick && props.onClick(props.row.id);
+      };
+      return (
+        <div className={styles.delete} onClick={handleCellClick}>
+          close
+        </div>
+      );
+    },
+  },
+  {
     Header: 'Delete',
     accessor: 'delete',
     Cell: (props: ColumnCellDefinedProps & CellProps<Record<string, unknown>>) => {
@@ -70,7 +89,11 @@ const columns = [
   },
 ];
 
-export const LoansList = ({ loans, deleteLoan }: LoansListProps) => {
+export const LoansList = ({ loans, closeLoan, deleteLoan }: LoansListProps) => {
+  const handleClose = (idx: unknown) => {
+    console.log('close: ', idx, loans[idx as number].id);
+    closeLoan(loans[idx as number].id);
+  };
   const handleDelete = (idx: unknown) => {
     deleteLoan(loans[idx as number].id);
   };
@@ -78,7 +101,10 @@ export const LoansList = ({ loans, deleteLoan }: LoansListProps) => {
     <DataTable
       columns={columns}
       data={loans}
-      columnCellProps={[{ columnId: 'delete', props: { onClick: handleDelete } }]}
+      columnCellProps={[
+        { columnId: 'close', props: { onClick: handleClose } },
+        { columnId: 'delete', props: { onClick: handleDelete } },
+      ]}
     />
   );
 };

@@ -40,6 +40,12 @@ mutation CreateLoan(
   }
 }
 
+mutation CloseLoan($loanId: String!) {
+  closeLoan(id: $loanId) {
+    status
+  }
+}
+
 mutation DeleteLoan($loanId: String!) {
   deleteLoan(loanId: $loanId) {
     status
