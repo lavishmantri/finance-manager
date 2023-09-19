@@ -1,0 +1,14 @@
+fragment sheetMetadata on SheetMetadata {
+  rowHeaders
+  colHeaders
+}
+
+fragment sheet on Sheet {
+  id
+  name
+  workbookId
+  metadata {
+    ...sheetMetadata
+  }
+  data
+}

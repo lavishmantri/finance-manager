@@ -1,0 +1,11 @@
+query GetSheets($workbookId: String!) {
+  getSheetsList(workbookId: $workbookId) {
+    ...sheet
+  }
+}
+
+mutation UpdateSheetData($id: String!, $data: [[IntStringBool]]!) {
+  updateData(id: $id, data: $data) {
+    ...sheet
+  }
+}

@@ -1,0 +1,7 @@
+fragment workbook on Workbook {
+  id
+  name
+  metadata {
+    additionalProperties
+  }
+}

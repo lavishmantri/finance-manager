@@ -1,0 +1,17 @@
+query GetWorkbooks {
+  getWorkbookList {
+    ...workbook
+  }
+}
+
+mutation CreateWorkbook($name: String!) {
+  createWorkbook(name: $name) {
+    ...workbook
+  }
+}
+
+mutation UpdateWorkbook($name: String, $metadata: WorkbookMetadataInput) {
+  updateWorkbook(name: $name, metadata: $metadata) {
+    ...workbook
+  }
+}

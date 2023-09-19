@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.5.10",
+    "@handsontable/react": "^13.1.0",
     "@mantine/core": "^6.0.19",
     "@mantine/dates": "^6.0.19",
     "@mantine/utils": "^6.0.19",
@@ -12,7 +13,10 @@
     "classnames": "^2.3.1",
     "dayjs": "^1.11.6",
     "graphql": "^16.3.0",
+    "handsontable": "^13.1.0",
+    "hyperformula": "^2.5.0",
     "install": "^0.13.0",
+    "lodash": "^4.17.21",
     "npm": "^8.1.4",
     "numeral": "^2.0.6",
     "react": "^18.1.0",
