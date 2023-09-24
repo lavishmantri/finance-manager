@@ -8,10 +8,11 @@ import { forwardRef } from 'react';
 registerAllModules();
 
 interface DataGridProps {
+  data?: (string | boolean | number)[][];
   onChange: (changes: CellChange[] | null, source: ChangeSource) => void;
 }
 
-export const DataGrid = forwardRef<HotTable, DataGridProps>(({ onChange }, ref) => {
+export const DataGrid = forwardRef<HotTable, DataGridProps>(({ data, onChange }, ref) => {
   const hyperformulaInstance = HyperFormula.buildEmpty({
     licenseKey: 'internal-use-in-handsontable',
   });
@@ -19,13 +20,17 @@ export const DataGrid = forwardRef<HotTable, DataGridProps>(({ onChange }, ref) 
   return (
     <HotTable
       licenseKey="non-commercial-and-evaluation"
+      data={data}
       ref={ref}
       colHeaders={true}
       rowHeaders={true}
-      startCols={3}
-      startRows={3}
+      startCols={10}
+      startRows={100}
+      colWidths={200}
+      rowHeights={40}
       height="auto"
       dropdownMenu={true}
+      contextMenu={true}
       filters={true}
       manualColumnResize={true}
       manualRowResize={true}
