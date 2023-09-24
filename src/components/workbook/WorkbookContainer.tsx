@@ -22,5 +22,5 @@ export const WorkbookContainer = ({ workbookId }: WorkbookContainerProps) => {
   }
 
   console.log('Rendering workbook');
-  return <Workbook sheets={(data?.getSheetsList as Sheet[]) ?? null} />;
+  return <Workbook workbookId={workbookId} sheets={(data?.getSheetsList as Sheet[]) ?? null} />;
 };

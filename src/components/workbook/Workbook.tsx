@@ -1,18 +1,25 @@
 import { Box, Tabs } from '@mantine/core';
 import first from 'lodash/first';
-import React from 'react';
-import { DataGrid } from '../../oxygen/organisms/data-grid/DataGrid';
-import { Sheet } from '../../services/generated/graphql-types';
+import { Sheet, useCreateSheetInWorkbookMutation } from '../../services/generated/graphql-types';
+import { NewSheetBtn } from './NewSheetBtn';
 import { SheetView } from './Sheet';
 
-const MemoizedDataGrid = React.memo(DataGrid);
-
 interface WorkbookProps {
+  workbookId: string;
   sheets: Sheet[] | null;
 }
 
-export const Workbook = ({ sheets }: WorkbookProps) => {
+export const Workbook = ({ workbookId, sheets }: WorkbookProps) => {
+  const [createSheetInWorkbook, { loading }] = useCreateSheetInWorkbookMutation();
   console.log('Sheet re-rendering: ', sheets);
+
+  const handleAddSheet = () => {
+    createSheetInWorkbook({
+      variables: {
+        workbookId,
+      },
+    });
+  };
 
   return (
     <Box>
@@ -26,6 +33,7 @@ export const Workbook = ({ sheets }: WorkbookProps) => {
               </Tabs.Tab>
             );
           })}
+          <NewSheetBtn onAddSheet={handleAddSheet} loading={loading} />
         </Tabs.List>
         {sheets?.map(sheet => {
           return (
