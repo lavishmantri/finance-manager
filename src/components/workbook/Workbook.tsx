@@ -1,44 +1,22 @@
-import { HotTable } from '@handsontable/react';
 import { Box, Tabs } from '@mantine/core';
-import { CellChange, ChangeSource } from 'handsontable/common';
 import first from 'lodash/first';
-import { useRef } from 'react';
+import React from 'react';
 import { DataGrid } from '../../oxygen/organisms/data-grid/DataGrid';
-import { Sheet, useUpdateSheetDataMutation } from '../../services/generated/graphql-types';
+import { Sheet } from '../../services/generated/graphql-types';
+import { SheetView } from './Sheet';
+
+const MemoizedDataGrid = React.memo(DataGrid);
 
 interface WorkbookProps {
   sheets: Sheet[] | null;
 }
 
 export const Workbook = ({ sheets }: WorkbookProps) => {
-  const ref = useRef<HotTable>(null);
-  const [updateData] = useUpdateSheetDataMutation();
+  console.log('Sheet re-rendering: ', sheets);
 
-  const handleDataChange = (
-    sheetId: string,
-    changes: CellChange[] | null,
-    source: ChangeSource,
-  ) => {
-    if (source === 'edit') {
-      const updatedData = ref?.current?.hotInstance?.getData() ?? [[]];
-      console.log('Updated date: ', updatedData);
-      updateData({
-        variables: {
-          id: sheetId,
-          data: ref?.current?.hotInstance?.getData() ?? [[]],
-        },
-        optimisticResponse: {
-          updateData: {
-            id: sheetId,
-            name: sheets ? sheets[0]?.name : '',
-            data: ref?.current?.hotInstance?.getData() ?? [[]],
-          },
-        },
-      });
-    }
-  };
   return (
     <Box>
+      {/* <Text>{output}</Text> */}
       <Tabs defaultValue={first(sheets)?.id}>
         <Tabs.List>
           {sheets?.map(sheet => {
@@ -52,13 +30,7 @@ export const Workbook = ({ sheets }: WorkbookProps) => {
         {sheets?.map(sheet => {
           return (
             <Tabs.Panel key={sheet.id} value={sheet.id}>
-              <DataGrid
-                ref={ref}
-                data={sheet.data as (string | number | boolean)[][]}
-                onChange={(changes: CellChange[] | null, source: ChangeSource) =>
-                  handleDataChange(sheet.id, changes, source)
-                }
-              />
+              <SheetView sheet={sheet} />
             </Tabs.Panel>
           );
         })}

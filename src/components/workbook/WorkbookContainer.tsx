@@ -21,5 +21,6 @@ export const WorkbookContainer = ({ workbookId }: WorkbookContainerProps) => {
     return <Alert variant="filled">Error happened</Alert>;
   }
 
+  console.log('Rendering workbook');
   return <Workbook sheets={(data?.getSheetsList as Sheet[]) ?? null} />;
 };

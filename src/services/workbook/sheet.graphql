@@ -6,6 +6,6 @@ query GetSheets($workbookId: String!) {
 
 mutation UpdateSheetData($id: String!, $data: [[IntStringBool]]!) {
   updateData(id: $id, data: $data) {
-    ...sheet
+    status
   }
 }

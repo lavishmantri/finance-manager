@@ -23,6 +23,7 @@ export const WorkbookListContainer = () => {
 
     navigate(getWorkbookPath(workbook.data?.createWorkbook.id));
   };
+
   return (
     <Box>
       <Box>
